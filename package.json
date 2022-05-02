@@ -1,0 +1,14 @@
+{
+  "name": "discovering-webhooks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "repository": "git@github.com:HebertPereira/discovering-webhooks.git",
+  "author": "HebertPereira <hebert.vasconcelos@semantix.inc>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
