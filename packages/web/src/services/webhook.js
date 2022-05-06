@@ -1,20 +1,25 @@
-function handleActiveHook(setData) {
-  const ws = new WebSocket('ws://localhost:3000/webhook/status');
-  ws.onopen = () => {
-    // on connecting, do nothing but log it to the console
-    console.log('connected');
-  };
-  ws.onmessage = (evt) => {
-    // listen to data sent from the websocket server
-    const message = JSON.parse(evt.data);
-    setData({ dataFromServer: message });
-    console.log(message);
-  };
-  ws.onclose = () => {
-    console.log('disconnected');
-    // automatically try to reconnect on connection loss
-  };
-  return 'aa';
+import socketIOClient from 'socket.io-client';
+
+const ENDPOINT = 'http://localhost:3333';
+
+const socket = socketIOClient(ENDPOINT);
+
+export function activeHookChannel(
+  setServerValue,
+  setServicesValue,
+  setChatMessages
+) {
+  socket.on('timestamp', (data) => {
+    setServerValue(data);
+  });
+  socket.on('updateServicesStatus', (data) => {
+    setServicesValue(data);
+  });
+  socket.on('updateChatMessages', (data) => {
+    setChatMessages(data);
+  });
 }
 
-export default handleActiveHook;
+export function emitEvent(eventType, eventData) {
+  socket.emit(eventType, eventData);
+}

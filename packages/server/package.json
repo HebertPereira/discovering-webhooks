@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@webhooks/server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -13,7 +13,8 @@
     "morgan": "^1.10.0",
     "node-webhooks": "^1.4.2",
     "nodemon": "^2.0.16",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^4.5.0"
   },
   "scripts": {
     "start": "nodemon src/index.js"
