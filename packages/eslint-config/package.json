@@ -1,6 +1,6 @@
 {
-  "name": "eslint-config",
-  "version": "0.1.0",
+  "name": "@webhooks/eslint-config",
+  "version": "1.0.1",
   "main": ".eslintrc.js",
   "license": "MIT",
   "devDependencies": {

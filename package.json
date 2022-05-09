@@ -1,5 +1,5 @@
 {
-  "name": "discovering-webhooks",
+  "name": "webhooks",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
@@ -10,5 +10,14 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "scripts": {
+    "test": "lerna run test",
+    "start-all": "lerna run start",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 const corsMiddleware = (res) => {
-  // Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
+  // Which site is allowed to make a connection, in the below the "*" indicating that any site can make a connection
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  // Quais são os métodos que a conexão pode realizar na API
+  // What are the methods that the connection can perform in the API
   res.header('Access-Control-Allow-Methods', 'GET');
   next();
 };

@@ -1,32 +1,31 @@
+/* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
-
-import handleActiveHook from './services/webhook';
+import Footer from './components/Footer';
+import Main from './pages/Main';
+import { activeHookChannel } from './services/webhook';
+import formatDate from './utils/formatDate';
 
 function App() {
-  const [data, serData] = useState();
+  const [serverData, setServerData] = useState();
+  const [data, setData] = useState();
+  const [servicesStatus, setServicesStatus] = useState();
+  const [chatMessages, setChatMessages] = useState();
+
   useEffect(() => {
-    const reqWebHook = axios.get('http://localhost:3333/services/status');
-    console.log(reqWebHook);
-    handleActiveHook(serData);
+    activeHookChannel(setServerData, setServicesStatus, setChatMessages);
   }, []);
+
+  useEffect(() => {
+    serverData
+      ? setData(formatDate(serverData?.atDate, serverData?.serverStarts))
+      : null;
+  }, [serverData]);
+
   return (
     <div>
-      <header
-        style={{
-          display: 'flex',
-          width: '100%',
-          justifyContent: 'center',
-          fontSize: '2rem',
-          color: 'blue'
-        }}
-      >
-        <p>web app is running.</p>
-        <button type="button" onClick={() => console.log(data)}>
-          click
-        </button>
-      </header>
+      <Main cardData={servicesStatus} chatMessages={chatMessages} />
+      <Footer data={data} />
     </div>
   );
 }
